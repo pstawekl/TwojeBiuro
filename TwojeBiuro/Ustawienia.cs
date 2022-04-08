@@ -9,10 +9,10 @@ namespace TwojeBiuro
 {
     public class Ustawienia
     {
-        public string sqlServer = $@".\SQLEXPRESS";
-        public string sqlDatabase = $@"tesApp";
+        public string sqlServer = $@".\InteractiveSrv";
+        public string sqlDatabase = $@"TesApp";
         public string sqlUser = $@"sa";
-        public string sqlPasswd_ = "1234";
+        public string sqlPasswd_ = "EL4505to";
 
         public SqlConnection iConn;
     }

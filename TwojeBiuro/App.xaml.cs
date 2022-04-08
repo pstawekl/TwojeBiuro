@@ -44,19 +44,17 @@ namespace TwojeBiuro
                         XmlSerializer xmlS = new XmlSerializer(typeof(Ustawienia));
                         oUstawienia = (Ustawienia)xmlS.Deserialize(sr);
                     }
-                    loginWindow frm = new loginWindow();
-                    var app = new TwojeBiuro.App();
-                    app.InitializeComponent();
-                    app.Run(frm);
+                    
 
-                    ////połączenie do bazy danych
-                    //iSQl.CreateSQLConnection(oUstawienia.sqlServer, oUstawienia.sqlDatabase, oUstawienia.sqlUser, oUstawienia.sqlPasswd_, oUstawienia.iConn);
-                    //if(oUstawienia.iConn.State == System.Data.ConnectionState.Open)
-                    //{
-                    //    loginWindow frm = new loginWindow();
-                    //    var app = new TwojeBiuro.App();
-                    //    app.Run(frm);
-                    //}
+                    //połączenie do bazy danych
+                    iSQl.CreateSQLConnection(oUstawienia.sqlServer, oUstawienia.sqlDatabase, oUstawienia.sqlUser, oUstawienia.sqlPasswd_, oUstawienia.iConn);
+                    if (oUstawienia.iConn.State == System.Data.ConnectionState.Open)
+                    {
+                        loginWindow frm = new loginWindow();
+                        var app = new TwojeBiuro.App();
+                        app.InitializeComponent();
+                        app.Run(frm);
+                    }
                 }
 
 

@@ -1,0 +1,51 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:FontAwesome="clr-namespace:Blazorise.Icons.FontAwesome;assembly=Blazorise.Icons.FontAwesome" x:Class="TwojeBiuro.frmMain"
+        mc:Ignorable="d"
+        Title="Twoje Biuro" Height="1080" Width="1920" WindowState="Maximized" WindowStartupLocation="CenterScreen" Icon="/icon.png" Loaded="OnLoad">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="841*"/>
+            <ColumnDefinition Width="389*"/>
+            <ColumnDefinition Width="141*"/>
+            <ColumnDefinition Width="189*"/>
+            <ColumnDefinition Width="360*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel LastChildFill="False" Grid.ColumnSpan="5">
+            <dxwui:HamburgerMenu Width="198" AvailableViewStates="Overlay" ViewState="Opened" HorizontalHeaderBackground="White">
+                <dxwui:HamburgerMenu.PaneBackground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF5A82FF"/>
+                        <GradientStop Color="#FF364BFF" Offset="1"/>
+                    </LinearGradientBrush>
+                </dxwui:HamburgerMenu.PaneBackground>
+                <dxwui:HamburgerMenu.BottomBarItems>
+                    <dxwui:HamburgerMenuBottomBarNavigationButton Content="Settings" GlyphHeight="16" GlyphWidth="16"/>
+                    <dxwui:HamburgerMenuBottomBarNavigationButton Content="About" GlyphHeight="16" GlyphWidth="16"/>
+                </dxwui:HamburgerMenu.BottomBarItems>
+                <dxwui:HamburgerMenuNavigationButton Content="TES" GlyphHeight="16" GlyphWidth="16" FontFamily="Roboto" FontSize="24" FontWeight="Bold" IsEnabled="False"/>
+                <dxwui:HamburgerMenuNavigationButton x:Name="btnHome" Content="Home" GlyphHeight="16" GlyphWidth="16" IsSelected="True" FontFamily="Roboto" FontSize="24" Background="White" Foreground="Black" Click="btnHome_Click"/>
+                <dxwui:HamburgerMenuNavigationButton x:Name="btnDocs" Content="Dokumenty" GlyphHeight="16" GlyphWidth="16" FontFamily="Roboto" FontSize="24"/>
+                <dxwui:HamburgerMenuNavigationButton x:Name="btnContact" Content="Kontakt" GlyphHeight="16" GlyphWidth="16" FontFamily="Roboto" FontSize="24"/>
+                <dxwui:HamburgerMenuHyperlinkButton Content="Pomoc" NavigateUri="mailto:jakub.stawski@interactive.net.pl" FontFamily="Roboto" FontSize="16"/>
+            </dxwui:HamburgerMenu>
+            <StackPanel x:Name="pnlHome" Width="1720">
+                <Label Content="Co nowego w naszym biurze?" FontFamily="Roboto" FontSize="36" FontStyle="Normal" FontWeight="Light" Foreground="White">
+                    <Label.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF5A82FF"/>
+                            <GradientStop Color="#FF587FFF" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Label.Background>
+                </Label>
+                <TextBlock x:Name="lblNews" TextWrapping="Wrap"><Run Text="Label"/></TextBlock>
+            </StackPanel>
+        </DockPanel>
+
+    </Grid>
+
+</Window>

@@ -23,11 +23,37 @@ namespace TwojeBiuro
     /// </summary>
     public partial class loginWindow : Window
     {
-        interactiveSQL iSql = Program.iSQl;
-        Ustawienia oUstawienia = Program.oUstawienia;
+        interactiveSQL iSql = new interactiveSQL();
+        Ustawienia oUstawienia = new Ustawienia();
         public loginWindow()
         {
+            //string appPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            //if (!File.Exists($@"{appPath}\config.xml"))
+            //{
+            //    //Zapisanie configu do pliku XML w folderze apki
+            //    XmlSerializer xmlS = new XmlSerializer(typeof(Ustawienia));
+            //    TextWriter txtW = new StreamWriter($@"{appPath}\config.xml");
+            //    xmlS.Serialize(txtW, oUstawienia);
+            //}
+            //else
+            //{
+                ////Wczytanie configu z pliku XML z folderu apki
+                //using (var sr = new StreamReader($@"{appPath}\config.xml"))
+                //{
+                //    XmlSerializer xmlS = new XmlSerializer(typeof(Ustawienia));
+                //    oUstawienia = (Ustawienia)xmlS.Deserialize(sr);
+                //}
+
+
+            //połączenie do bazy danych
+            oUstawienia.iConn = (System.Data.SqlClient.SqlConnection)iSql.CreateSQLConnection(oUstawienia.sqlServer, oUstawienia.sqlDatabase, oUstawienia.sqlUser, oUstawienia.sqlPasswd_, oUstawienia.iConn);
             
+            if (oUstawienia.iConn.State == System.Data.ConnectionState.Closed)
+            {
+            MessageBox.Show($@"Wystąpił błąd podczas próby uruchomienia programu. 
+            {Environment.NewLine} Powód: Brak połączenia z bazą danych. 
+            {Environment.NewLine} Spróbuj ponownie uruchomić program lub skontaktuj się z jego twórcą za pomocą maila: jakub.stawski@interactive.net.pl");
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -38,13 +64,24 @@ namespace TwojeBiuro
             //}
             if (txtPassword.Password != "Password" & txtUser.Text != "User" & txtPassword.Password.Length > 0 & txtUser.Text.Length > 0)
             {
-                if(txtUser.Text == "pstawekl" & txtPassword.Password == "el4505to")
+                if (oUstawienia.iConn == null)
                 {
-                    Main frmMain = new Main();
+                    oUstawienia.iConn = (System.Data.SqlClient.SqlConnection)iSql.CreateSQLConnection(oUstawienia.sqlServer, oUstawienia.sqlDatabase, oUstawienia.sqlUser, oUstawienia.sqlPasswd_, oUstawienia.iConn);
+                }
+                int czyUserIstnieje = iSql.GetScalarInt($@"select count(*) from tes_Users where us_Login = '{txtUser.Text}' and us_Password = '{txtPassword.Password}'", oUstawienia.iConn);
+                if(czyUserIstnieje == 1)
+                {
+                    Window frmMain = new frmMain();
                     this.Close();
                     frmMain.ShowDialog();
                     frmMain.Close();
                     frmMain = null;
+                }
+                else
+                {
+                    pnlMessage.Visibility = Visibility.Visible;
+                    txtUser.Text = "User";
+                    txtPassword.Password = "Password";
                 }
             }
             else
@@ -99,6 +136,11 @@ namespace TwojeBiuro
             {
                 txtPassword.BorderBrush = new SolidColorBrush(Colors.White);
             }
+        }
+
+        private void btnCloseMessage_Click(object sender, RoutedEventArgs e)
+        {
+            pnlMessage.Visibility = Visibility.Hidden;
         }
 
         //private void txtUser_MouseDown(object sender, MouseButtonEventArgs e)

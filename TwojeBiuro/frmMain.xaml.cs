@@ -11,17 +11,31 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Interactive;
 
 namespace TwojeBiuro
 {
     /// <summary>
     /// Logika interakcji dla klasy Window1.xaml
     /// </summary>
-    public partial class Main : Window
+    public partial class frmMain : Window
     {
-        public Main()
+        interactiveSQL iSql = new interactiveSQL();
+        Ustawienia oUstawienia = new Ustawienia();
+        public frmMain()
         {
             InitializeComponent();
+        }
+
+        void OnLoad(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnHome_Click(object sender, RoutedEventArgs e)
+        {
+            frmHome frm = new frmHome(oUstawienia);
+            frm.Show();
         }
     }
 }

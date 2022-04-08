@@ -1,4 +1,5 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
@@ -6,6 +7,7 @@
     <UseWPF>true</UseWPF>
     <StartupObject>TwojeBiuro.App</StartupObject>
   </PropertyGroup>
+
   <ItemGroup>
     <None Remove="banner.webp" />
     <None Remove="bannerNative.webp" />
@@ -17,16 +19,18 @@
     <None Remove="home_small.png" />
     <None Remove="icon.png" />
   </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.2" />
-    <PackageReference Include="devexpress.wpf.controls" Version="21.2.6" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
+
   <ItemGroup>
     <Reference Include="Interactive">
       <HintPath>..\..\..\..\Desktop\Interactive.dll</HintPath>
     </Reference>
   </ItemGroup>
+
   <ItemGroup>
     <Resource Include="banner.webp" />
     <Resource Include="bannerNative.webp" />
@@ -38,4 +42,5 @@
     <Resource Include="home_small.png" />
     <Resource Include="icon.png" />
   </ItemGroup>
+
 </Project>

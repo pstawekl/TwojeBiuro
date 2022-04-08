@@ -34,6 +34,11 @@
         <Button x:Name="btnLogin" Content="Log in" Margin="138,207,0,0" Grid.Column="3" Grid.ColumnSpan="2" Click="Button_Click" HorizontalAlignment="Left" Width="150" Height="20" VerticalAlignment="Top" Background="#FF3365FF" FontFamily="Roboto" Foreground="White" RenderTransformOrigin="0,0" TabIndex="3"/>
         <Label Content="TES" Margin="167,0,0,0" RenderTransformOrigin="0.6,0.55" FontFamily="Roboto" FontSize="46" FontWeight="Light" Foreground="White" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="92" Height="65" VerticalAlignment="Center"/>
         <PasswordBox x:Name="txtPassword" Grid.Column="4" Margin="38,174,0,0" Password="Password" GotFocus="txtPassword_GotFocus" LostFocus="txtPassword_LostFocus" HorizontalAlignment="Left" Width="350" AllowDrop="False" VerticalContentAlignment="Center" RenderTransformOrigin="0.506,-1.193" Height="18" VerticalAlignment="Top" TabIndex="2"/>
+        <StackPanel Grid.Column="4" Grid.Row="1"/>
+        <StackPanel x:Name="pnlMessage" Grid.Column="4" Grid.Row="1" Background="White" Margin="96,18,283,155" Visibility="Hidden">
+            <Button x:Name="btnCloseMessage" Content="x" Width="6" Height="8" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" FontSize="5" HorizontalAlignment="Right" FontWeight="Normal" FontStyle="Normal" FontFamily="Roboto" Click="btnCloseMessage_Click"/>
+            <Label Content="Nie znaleziono użytkownika, spróbuj ponownie.&#xD;&#xA;" FontSize="10" Width="219" Height="24" HorizontalAlignment="Left"/>
+        </StackPanel>
 
     </Grid>
 </Window>

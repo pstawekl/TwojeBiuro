@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Interactive;
+using FontAwesome.WPF;
 
 namespace TwojeBiuro
 {
@@ -29,13 +30,39 @@ namespace TwojeBiuro
 
         void OnLoad(object sender, RoutedEventArgs e)
         {
-            
+            btnDelete.Glyph = ImageAwesome.CreateImageSource(FontAwesomeIcon.Trash, new SolidColorBrush(Colors.White));
+            btnEdit.Glyph = ImageAwesome.CreateImageSource(FontAwesomeIcon.Edit, new SolidColorBrush(Colors.White));
+            btnAdd.Glyph = ImageAwesome.CreateImageSource(FontAwesomeIcon.File, new SolidColorBrush(Colors.White));
         }
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-            frmHome frm = new frmHome(oUstawienia);
-            frm.Show();
+            if (pnlHome.Visibility == Visibility.Collapsed)
+            {
+                pnlHome.Visibility = Visibility.Visible;
+                if(pnlDocs.Visibility == Visibility.Visible) { pnlDocs.Visibility = Visibility.Collapsed;}
+            }
         }
+
+        private void btnDocs_Click(object sender, RoutedEventArgs e)
+        {
+            if (pnlDocs.Visibility == Visibility.Collapsed)
+            {
+                pnlDocs.Visibility = Visibility.Visible;
+                if(pnlHome.Visibility == Visibility.Visible) { pnlHome.Visibility = Visibility.Collapsed; }
+            }
+        }
+
+        private void btnContact_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+
     }
 }

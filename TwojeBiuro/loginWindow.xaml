@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TwojeBiuro"
         mc:Ignorable="d"
-        Title="TwojeBiuro" Height="375" Width="800" WindowStartupLocation="CenterScreen" MaxHeight="450" MaxWidth="800" MinHeight="450" MinWidth="800" ResizeMode="NoResize" Icon="/icon.png" WindowStyle="None">
+        Title="TwojeBiuro" Height="375" Width="800" WindowStartupLocation="CenterScreen" MaxHeight="450" MaxWidth="800" MinHeight="450" MinWidth="800" ResizeMode="NoResize" Icon="img/icon.png" WindowStyle="None">
     <Grid Height="440" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="227*"/>
@@ -28,7 +28,7 @@
             </LinearGradientBrush>
         </Grid.Background>
 
-        <Image Source="/banner.webp" Grid.ColumnSpan="5" Grid.RowSpan="2" Margin="-194,-217,-162,-230"/>
+        <Image Source="img/banner.webp" Grid.ColumnSpan="5" Grid.RowSpan="2" Margin="-194,-217,-162,-230"/>
 
         <TextBox x:Name="txtUser" Margin="38,151,0,0" TextWrapping="Wrap" Text="User" RenderTransformOrigin="0.502,0.499" Grid.Column="3" Grid.ColumnSpan="2" GotFocus="txtUser_GotFocus" LostFocus="txtUser_LostFocus" HorizontalAlignment="Left" Width="350" Height="18" VerticalAlignment="Top" VerticalContentAlignment="Center" TabIndex="1"/>
         <Button x:Name="btnLogin" Content="Log in" Margin="138,207,0,0" Grid.Column="3" Grid.ColumnSpan="2" Click="Button_Click" HorizontalAlignment="Left" Width="150" Height="20" VerticalAlignment="Top" Background="#FF3365FF" FontFamily="Roboto" Foreground="White" RenderTransformOrigin="0,0" TabIndex="3"/>

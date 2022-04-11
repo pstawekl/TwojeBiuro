@@ -16,10 +16,17 @@
     <None Remove="home.png" />
     <None Remove="home_small.png" />
     <None Remove="icon.png" />
+    <None Remove="img\contact.png" />
+    <None Remove="img\contact_small.png" />
+    <None Remove="img\docs.png" />
+    <None Remove="img\docs_small.png" />
+    <None Remove="img\home.png" />
+    <None Remove="img\home_small.png" />
+    <None Remove="img\icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.2" />
     <PackageReference Include="devexpress.wpf.controls" Version="21.2.6" />
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
   <ItemGroup>
@@ -28,14 +35,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="banner.webp" />
-    <Resource Include="bannerNative.webp" />
-    <Resource Include="contact.png" />
-    <Resource Include="contact_small.png" />
-    <Resource Include="docs.png" />
-    <Resource Include="docs_small.png" />
-    <Resource Include="home.png" />
-    <Resource Include="home_small.png" />
-    <Resource Include="icon.png" />
+    <Resource Include="img\banner.webp" />
+    <Resource Include="img\bannerNative.webp" />
+    <Resource Include="img\contact.png" />
+    <Resource Include="img\contact_small.png" />
+    <Resource Include="img\docs.png" />
+    <Resource Include="img\docs_small.png" />
+    <Resource Include="img\home.png" />
+    <Resource Include="img\home_small.png" />
+    <Resource Include="img\icon.png" />
   </ItemGroup>
 </Project>

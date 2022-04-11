@@ -74,8 +74,6 @@ namespace TwojeBiuro
                     Window frmMain = new frmMain();
                     this.Close();
                     frmMain.ShowDialog();
-                    frmMain.Close();
-                    frmMain = null;
                 }
                 else
                 {

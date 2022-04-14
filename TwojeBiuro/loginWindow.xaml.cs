@@ -19,14 +19,16 @@ using System.Xml.Serialization;
 namespace TwojeBiuro
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class loginWindow : Window
+    public partial class LoginWindow : Window
     {
         interactiveSQL iSql = new interactiveSQL();
+        interactiveOther iOther = new interactiveOther();
         Ustawienia oUstawienia = new Ustawienia();
-        public loginWindow()
+        public LoginWindow()
         {
+            #region trash
             //string appPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             //if (!File.Exists($@"{appPath}\config.xml"))
             //{
@@ -37,13 +39,13 @@ namespace TwojeBiuro
             //}
             //else
             //{
-                ////Wczytanie configu z pliku XML z folderu apki
-                //using (var sr = new StreamReader($@"{appPath}\config.xml"))
-                //{
-                //    XmlSerializer xmlS = new XmlSerializer(typeof(Ustawienia));
-                //    oUstawienia = (Ustawienia)xmlS.Deserialize(sr);
-                //}
-
+            ////Wczytanie configu z pliku XML z folderu apki
+            //using (var sr = new StreamReader($@"{appPath}\config.xml"))
+            //{
+            //    XmlSerializer xmlS = new XmlSerializer(typeof(Ustawienia));
+            //    oUstawienia = (Ustawienia)xmlS.Deserialize(sr);
+            //}
+            #endregion
 
             //połączenie do bazy danych
             oUstawienia.iConn = (System.Data.SqlClient.SqlConnection)iSql.CreateSQLConnection(oUstawienia.sqlServer, oUstawienia.sqlDatabase, oUstawienia.sqlUser, oUstawienia.sqlPasswd_, oUstawienia.iConn);
@@ -56,48 +58,46 @@ namespace TwojeBiuro
             }
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtUser.Focus();
+        }
+
+        #region ButtonsEvents
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //if (iSql.GetScalarInt($@"select count(*) from ...", oUstawienia.iConn) > 0)
-            //{
+            LogIntoApp();
 
-            //}
-            if (txtPassword.Password != "Password" & txtUser.Text != "User" & txtPassword.Password.Length > 0 & txtUser.Text.Length > 0)
+        }
+
+        private void btnCloseMessage_Click(object sender, RoutedEventArgs e)
+        {
+            pnlMessage.Visibility = Visibility.Hidden;
+        }
+        #endregion
+
+        #region KeyDowns
+        private void txtUser_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
             {
-                if (oUstawienia.iConn == null)
-                {
-                    oUstawienia.iConn = (System.Data.SqlClient.SqlConnection)iSql.CreateSQLConnection(oUstawienia.sqlServer, oUstawienia.sqlDatabase, oUstawienia.sqlUser, oUstawienia.sqlPasswd_, oUstawienia.iConn);
-                }
-                int czyUserIstnieje = iSql.GetScalarInt($@"select count(*) from tes_Users where us_Login = '{txtUser.Text}' and us_Password = '{txtPassword.Password}'", oUstawienia.iConn);
-                if(czyUserIstnieje == 1)
-                {
-                    Window frmMain = new frmMain();
-                    this.Close();
-                    frmMain.ShowDialog();
-                }
-                else
-                {
-                    pnlMessage.Visibility = Visibility.Visible;
-                    txtUser.Text = "User";
-                    txtPassword.Password = "Password";
-                }
-            }
-            else
-            {
-                if(txtUser.Text == "User")
-                {
-                    txtUser.BorderBrush = new SolidColorBrush(Colors.Red);
-                }
-                if (txtPassword.Password == "Password")
-                {
-                    txtPassword.BorderBrush= new SolidColorBrush(Colors.Red);
-                }
+                LogIntoApp();
             }
         }
 
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                LogIntoApp();
+            }
+        }
+        #endregion
+
+        #region Placeholders
         private void txtUser_LostFocus(object sender, RoutedEventArgs e)
         {
-            if(txtUser.Text.Length == 0)
+            if (txtUser.Text.Length == 0)
             {
                 txtUser.Text = "User";
             }
@@ -135,21 +135,43 @@ namespace TwojeBiuro
                 txtPassword.BorderBrush = new SolidColorBrush(Colors.White);
             }
         }
+        #endregion
 
-        private void btnCloseMessage_Click(object sender, RoutedEventArgs e)
+        #region scripts
+        void LogIntoApp()
         {
-            pnlMessage.Visibility = Visibility.Hidden;
+            if (txtPassword.Password != "Password" & txtUser.Text != "User" & txtPassword.Password.Length > 0 & txtUser.Text.Length > 0)
+            {
+                if (oUstawienia.iConn == null)
+                {
+                    oUstawienia.iConn = (System.Data.SqlClient.SqlConnection)iSql.CreateSQLConnection(oUstawienia.sqlServer, oUstawienia.sqlDatabase, oUstawienia.sqlUser, oUstawienia.sqlPasswd_, oUstawienia.iConn);
+                }
+                int czyUserIstnieje = iSql.GetScalarInt($@"select count(*) from tes_Users where us_Login = '{txtUser.Text}' and us_Password = '{txtPassword.Password}'", oUstawienia.iConn);
+                if (czyUserIstnieje == 1)
+                {
+                    Window frmMain = new frmMain();
+                    this.Close();
+                    frmMain.ShowDialog();
+                }
+                else
+                {
+                    pnlMessage.Visibility = Visibility.Visible;
+                    txtUser.Text = "User";
+                    txtPassword.Password = "Password";
+                }
+            }
+            else
+            {
+                if (txtUser.Text == "User")
+                {
+                    txtUser.BorderBrush = new SolidColorBrush(Colors.Red);
+                }
+                if (txtPassword.Password == "Password")
+                {
+                    txtPassword.BorderBrush = new SolidColorBrush(Colors.Red);
+                }
+            }
         }
-
-        //private void txtUser_MouseDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    if (e.ButtonState == MouseButtonState.Pressed)
-        //    {
-        //        if (txtUser.Text == "User")
-        //        {
-        //            txtUser.Text = "";
-        //        }
-        //    }
-        //}
+        #endregion
     }
 }

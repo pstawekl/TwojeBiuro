@@ -9,15 +9,12 @@ using System.Xml.Serialization;
 
 namespace TwojeBiuro
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
 
     public partial class Start
     {
         public static interactiveSQL iSQl = new interactiveSQL();
         public static interactiveXML iXML = new interactiveXML();
-        public static interactive iA = new interactive();
+        public static interactiveOther iOther = new interactiveOther();
         public static Ustawienia oUstawienia = new Ustawienia();
 
         void RunApp()
@@ -38,7 +35,7 @@ namespace TwojeBiuro
                     XmlSerializer xmlS = new XmlSerializer(typeof(Ustawienia));
                     oUstawienia = (Ustawienia)xmlS.Deserialize(sr);
                 }
-                loginWindow frm = new loginWindow();
+                LoginWindow frm = new LoginWindow();
                 var app = new TwojeBiuro.App();
                 app.Run(frm);
 

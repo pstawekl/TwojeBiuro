@@ -16,7 +16,7 @@
             <ColumnDefinition Width="360*"/>
         </Grid.ColumnDefinitions>
         <DockPanel LastChildFill="False" Grid.ColumnSpan="5">
-            <dxwui:HamburgerMenu x:Name="hamburgerMenu" Width="198" AvailableViewStates="Inline" ViewState="Opened" HorizontalHeaderBackground="White" IsInitiallyCompact="false" ShowMenuOnEmptySpaceBarClick="False" AutomationProperties.IsRequiredForForm="True" FontFamily="Roboto" Header="{Binding IsCompact.FalseString, ElementName=hamburgerMenu}">
+            <dxwui:HamburgerMenu x:Name="hamburgerMenu" Width="198" AvailableViewStates="Inline" ViewState="Opened" ViewStateChanged="hamburgerMenu_ViewStateChanged" HorizontalHeaderBackground="White" IsInitiallyCompact="false" ShowMenuOnEmptySpaceBarClick="False" AutomationProperties.IsRequiredForForm="True" FontFamily="Roboto" Header="{Binding IsCompact.FalseString, ElementName=hamburgerMenu}">
                 <dxwui:HamburgerMenu.PaneBackground>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FF5A82FF"/>
@@ -52,19 +52,17 @@
                             <GradientStop Color="#FF577DFF" Offset="1"/>
                         </LinearGradientBrush>
                     </dxb:ToolBarControl.Background>
-                    <dxb:BarButtonItem x:Name="btnAdd" Content="Dodaj" RibbonStyle="Default" BarItemDisplayMode="ContentAndGlyph" Foreground="White"/>
-                    <dxb:BarButtonItem x:Name="btnDelete" Content="Usuń" BarItemDisplayMode="ContentAndGlyph">
-                    </dxb:BarButtonItem>
+                    <dxb:BarButtonItem x:Name="btnAdd" Content="Dodaj" RibbonStyle="Default" BarItemDisplayMode="ContentAndGlyph" Foreground="White" ItemClick="btnAdd_ItemClick"/>
+                    <dxb:BarButtonItem x:Name="btnDelete" Content="Usuń" BarItemDisplayMode="ContentAndGlyph"/>
                     <dxb:BarButtonItem x:Name="btnEdit" Content="Edytuj" BarItemDisplayMode="ContentAndGlyph"/>
                 </dxb:ToolBarControl>
+                <StackPanel Height="100">
+                    <StackPanel Height="100">
+                        <Label Content="Label" Width="96" Height="102" VerticalAlignment="Stretch" HorizontalAlignment="Left" FontFamily="Roboto" FontSize="36"/>
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
         </DockPanel>
-        <dxb:MainMenuControl HorizontalAlignment="Left" Margin="205,235,0,0" Height="533" Width="524" AllowRename="False" AllowRemove="False" AllowCustomizationMenu="False" BarItemDisplayMode="ContentAndGlyph" BarItemsAlignment="Far" UseLayoutRounding="False" VerticalAlignment="Top">
-            <dxb:BarButtonItem Content="TES" IsEnabled="False"/>
-            <dxb:BarButtonItem Content="Home" Alignment="Far"/>
-            <dxb:BarButtonItem Content="Dokumenty"/>
-            <dxb:BarButtonItem Content="Kontakt"/>
-        </dxb:MainMenuControl>
         <dxwui:HamburgerMenuNavigationButton Content="TES" GlyphHeight="16" GlyphWidth="16" FontFamily="Roboto" FontSize="24" FontWeight="Bold" IsEnabled="False" Margin="296,202,345,813"/>
 
     </Grid>

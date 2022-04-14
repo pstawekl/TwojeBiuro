@@ -19,7 +19,7 @@ namespace TwojeBiuro
     {
         public static interactiveSQL iSQl = new interactiveSQL();
         public static interactiveXML iXML = new interactiveXML();
-        public static interactive iA = new interactive();
+        public static interactiveOther iA = new interactiveOther();
         public static Ustawienia oUstawienia = new Ustawienia();
 
         [STAThread]
@@ -50,7 +50,7 @@ namespace TwojeBiuro
                     iSQl.CreateSQLConnection(oUstawienia.sqlServer, oUstawienia.sqlDatabase, oUstawienia.sqlUser, oUstawienia.sqlPasswd_, oUstawienia.iConn);
                     if (oUstawienia.iConn.State == System.Data.ConnectionState.Open)
                     {
-                        loginWindow frm = new loginWindow();
+                        LoginWindow frm = new LoginWindow();
                         var app = new TwojeBiuro.App();
                         app.InitializeComponent();
                         app.Run(frm);

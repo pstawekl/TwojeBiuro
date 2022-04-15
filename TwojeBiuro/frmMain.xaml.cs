@@ -25,7 +25,7 @@ namespace TwojeBiuro
     {
         interactiveSQL iSql = new interactiveSQL();
         interactiveOther iOthers = new interactiveOther();
-        Ustawienia oUstawienia = new Ustawienia();
+        public Ustawienia oUstawienia = new Ustawienia();
         double hamburgerMenuWidthBefore;
         bool isFormLoad = true;
         StackPanel actualPanel;
@@ -36,9 +36,11 @@ namespace TwojeBiuro
 
         void OnLoad(object sender, RoutedEventArgs e)
         {
+            object fileIC;
             btnDelete.Glyph = ImageAwesome.CreateImageSource(FontAwesomeIcon.Trash, new SolidColorBrush(Colors.White));
             btnEdit.Glyph = ImageAwesome.CreateImageSource(FontAwesomeIcon.Edit, new SolidColorBrush(Colors.White));
             btnAdd.Glyph = ImageAwesome.CreateImageSource(FontAwesomeIcon.File, new SolidColorBrush(Colors.White));
+            fileIcon.Source = ImageAwesome.CreateImageSource(FontAwesomeIcon.File, new SolidColorBrush(Color.FromRgb(59, 147, 255)));
             hamburgerMenuWidthBefore = hamburgerMenu.Width;
             isFormLoad = false;
         }

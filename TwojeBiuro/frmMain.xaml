@@ -3,7 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" x:Class="TwojeBiuro.frmMain"
+        xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" x:Class="TwojeBiuro.frmMain"
         mc:Ignorable="d"
         Title="Twoje Biuro" Height="1080" Width="1920" WindowState="Maximized" WindowStartupLocation="CenterScreen" Icon="img/icon.png" Loaded="OnLoad" Closed="Window_Closed">
 
@@ -56,14 +56,27 @@
                     <dxb:BarButtonItem x:Name="btnDelete" Content="Usuń" BarItemDisplayMode="ContentAndGlyph"/>
                     <dxb:BarButtonItem x:Name="btnEdit" Content="Edytuj" BarItemDisplayMode="ContentAndGlyph"/>
                 </dxb:ToolBarControl>
-                <StackPanel Height="100">
-                    <StackPanel Height="100">
-                        <Label Content="Label" Width="96" Height="102" VerticalAlignment="Stretch" HorizontalAlignment="Left" FontFamily="Roboto" FontSize="36"/>
+                <StackPanel Height="125">
+                    <StackPanel Height="348">
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFE0E0E0"/>
+                                <GradientStop Color="#FFD8D8D8" Offset="1"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                        <Image x:Name="fileIcon" Height="60" Width="60" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Center">
+                            <Image.OpacityMask>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="Black"/>
+                                    <GradientStop Color="#FF5A81FF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Image.OpacityMask>
+                        </Image>
+                        <dxe:ProgressBarEdit Width="1446"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
         </DockPanel>
-        <dxwui:HamburgerMenuNavigationButton Content="TES" GlyphHeight="16" GlyphWidth="16" FontFamily="Roboto" FontSize="24" FontWeight="Bold" IsEnabled="False" Margin="296,202,345,813"/>
 
     </Grid>
 

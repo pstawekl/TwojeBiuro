@@ -3,3 +3,6 @@ DevExpress.Xpf.WindowsUI.PageAdornerControl, DevExpress.Xpf.Controls.v21.2, Vers
 DevExpress.Xpf.WindowsUI.HamburgerMenu, DevExpress.Xpf.Controls.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.Xpf.WindowsUI.AppBar, DevExpress.Xpf.Controls.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.Xpf.Navigation.TileBar, DevExpress.Xpf.Controls.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.Xpf.Editors.ProgressBarEdit, DevExpress.Xpf.Core.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.Xpf.Carousel.CarouselPanel, DevExpress.Xpf.Carousel.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.Xpf.Core.UniformStackPanel, DevExpress.Xpf.Core.v21.2, Version=21.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a

@@ -140,36 +140,44 @@ namespace TwojeBiuro
         #region scripts
         void LogIntoApp()
         {
-            if (txtPassword.Password != "Password" & txtUser.Text != "User" & txtPassword.Password.Length > 0 & txtUser.Text.Length > 0)
+            try
             {
-                if (oUstawienia.iConn == null)
+                if (txtPassword.Password != "Password" & txtUser.Text != "User" & txtPassword.Password.Length > 0 & txtUser.Text.Length > 0)
                 {
-                    oUstawienia.iConn = (System.Data.SqlClient.SqlConnection)iSql.CreateSQLConnection(oUstawienia.sqlServer, oUstawienia.sqlDatabase, oUstawienia.sqlUser, oUstawienia.sqlPasswd_, oUstawienia.iConn);
-                }
-                int czyUserIstnieje = iSql.GetScalarInt($@"select count(*) from tes_Users where us_Login = '{txtUser.Text}' and us_Password = '{txtPassword.Password}'", oUstawienia.iConn);
-                if (czyUserIstnieje == 1)
-                {
-                    Window frmMain = new frmMain();
-                    this.Close();
-                    frmMain.ShowDialog();
+                    if (oUstawienia.iConn == null)
+                    {
+                        oUstawienia.iConn = (System.Data.SqlClient.SqlConnection)iSql.CreateSQLConnection(oUstawienia.sqlServer, oUstawienia.sqlDatabase, oUstawienia.sqlUser, oUstawienia.sqlPasswd_, oUstawienia.iConn);
+                    }
+                    int czyUserIstnieje = iSql.GetScalarInt($@"select count(*) from tes_Users where us_Login = '{txtUser.Text}' and us_Password = '{txtPassword.Password}'", oUstawienia.iConn);
+                    if (czyUserIstnieje == 1)
+                    {
+                        Window frmMain = new frmMain();
+                        this.Close();
+                        frmMain.ShowDialog();
+                    }
+                    else
+                    {
+                        pnlMessage.Visibility = Visibility.Visible;
+                        txtUser.Text = "User";
+                        txtPassword.Password = "Password";
+                    }
                 }
                 else
                 {
-                    pnlMessage.Visibility = Visibility.Visible;
-                    txtUser.Text = "User";
-                    txtPassword.Password = "Password";
+                    if (txtUser.Text == "User")
+                    {
+                        txtUser.BorderBrush = new SolidColorBrush(Colors.Red);
+                    }
+                    if (txtPassword.Password == "Password")
+                    {
+                        txtPassword.BorderBrush = new SolidColorBrush(Colors.Red);
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                if (txtUser.Text == "User")
-                {
-                    txtUser.BorderBrush = new SolidColorBrush(Colors.Red);
-                }
-                if (txtPassword.Password == "Password")
-                {
-                    txtPassword.BorderBrush = new SolidColorBrush(Colors.Red);
-                }
+                iOther.SaveToLog($@"Błąd podczas wywołania procedury LogIntoApp w loginWindow")''
+                throw new Exception($@"Wystąpił błąd podczas próby zalogowania się do programu. Treść błędu: {ex.Message} {Environment.NewLine} Skontaktuj się z administratorem systemu.");
             }
         }
         #endregion
